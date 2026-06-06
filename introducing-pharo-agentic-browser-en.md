@@ -192,7 +192,7 @@ Any ACP-compatible agent - preset list:
 
 Also supported: OpenCode, Kilo Code, and more
 
-> **Recommended**: Install [smalltalk-dev-plugin](https://github.com/mumez/smalltalk-dev-plugin) in your agent for better Smalltalk code
+> **Recommended**: Install [smalltalk-dev-plugin](https://github.com/mumez/smalltalk-dev-plugin) in your agent for better Smalltalk
 
 ---
 
@@ -217,11 +217,13 @@ The first message is automatically prefixed with <code>/st-buddy</code> to activ
 
 ---
 
+<!-- _class: image -->
+
 # Topic States
 
 Each topic follows a clear state machine:
 
-![w:900px](images/topic-states.svg)
+![h:520px](images/topic-states.svg)
 
 ---
 
