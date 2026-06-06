@@ -42,7 +42,7 @@ jobs:
           MARP_USER: root:root
 
       - name: Copy HTML as index and add .nojekyll
-        run: cp build/introducing-smalltalk-dev-plugin-en.html build/index.html && touch build/.nojekyll
+        run: cp build/introducing-pharo-agentic-browser-en.html build/index.html && touch build/.nojekyll
 
       - name: Deploy preview
         if: ${{ github.event_name == 'pull_request' }}

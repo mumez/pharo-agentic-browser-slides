@@ -1,4 +1,4 @@
-# -slides
+# pharo-agentic-browser-slides
 
 Slide collection of [pharo-agentic-browser](https://github.com/mumez/pharo-agentic-browser).
 
