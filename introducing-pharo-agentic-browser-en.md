@@ -221,17 +221,11 @@ The first message is automatically prefixed with <code>/st-buddy</code> to activ
 
 Each topic follows a clear state machine:
 
-```
-#initial ──promptSent──▶ #working ──permissionRequested──▶ #waitingForHuman
-                             ▲                                      │
-                             └──────────humanResponded──────────────┘
-                             │
-                          turnEnded ──▶ #endTurn ──promptSent──▶ #working
-                                              │
-                                          goalReached
-                                              ▼
-                                        #goalAchieved
-```
+![w:900px](images/topic-states.svg)
+
+---
+
+# Topic State Icons
 
 | Icon | State | Meaning |
 |------|-------|---------|
