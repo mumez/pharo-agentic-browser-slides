@@ -180,17 +180,17 @@ AgenticBrowser open.
 
 # Installation — Agent Side
 
-Install at least one ACP-compatible agent:
+Any ACP-compatible agent - preset list:
 
 | Agent | Install |
 |-------|---------|
 | **Claude Code** | `npm install -g @agentclientprotocol/claude-agent-acp` |
 | **Codex** | `npm install -g @agentclientprotocol/codex-acp` |
 | **Gemini CLI** | ACP built-in (`gemini --acp`) |
-| **OpenCode** | ACP built-in (`opencode acp`) |
 | **Copilot CLI** | ACP built-in (`copilot --acp --stdio`) |
 | **Cursor CLI** | ACP built-in (`agent acp`) |
-| **Kilo Code** | ACP is built-in (`kilo acp`) |
+
+Also supported: OpenCode, Kilo Code, and more
 
 > **Recommended**: Install [smalltalk-dev-plugin](https://github.com/mumez/smalltalk-dev-plugin) in your agent for better Smalltalk code
 
