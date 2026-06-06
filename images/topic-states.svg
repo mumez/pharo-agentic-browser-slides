@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 860 480" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="a-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2C67E5"/>
+    </marker>
+    <marker id="a-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#E68A00"/>
+    </marker>
+    <marker id="a-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2E8B57"/>
+    </marker>
+    <marker id="a-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#888"/>
+    </marker>
+  </defs>
+
+  <!-- === State: #initial === -->
+  <rect x="20" y="100" width="138" height="40" rx="20" fill="#F2F2F2" stroke="#888" stroke-width="2"/>
+  <text x="89" y="125" text-anchor="middle" font-size="13" fill="#666">#initial</text>
+
+  <!-- === State: #working === -->
+  <rect x="220" y="100" width="150" height="40" rx="20" fill="#E8F0FE" stroke="#2C67E5" stroke-width="2.5"/>
+  <text x="295" y="125" text-anchor="middle" font-size="14" font-weight="bold" fill="#2C67E5">#working</text>
+
+  <!-- === State: #waitingForHuman === -->
+  <rect x="510" y="100" width="220" height="40" rx="20" fill="#FFF3E0" stroke="#E68A00" stroke-width="2"/>
+  <text x="620" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#E68A00">#waitingForHuman</text>
+
+  <!-- === State: #endTurn === -->
+  <rect x="220" y="280" width="150" height="40" rx="20" fill="#F0F4FF" stroke="#5C7CB5" stroke-width="2"/>
+  <text x="295" y="305" text-anchor="middle" font-size="13" fill="#5C7CB5">#endTurn</text>
+
+  <!-- === State: #goalAchieved (double border = final state) === -->
+  <rect x="215" y="410" width="160" height="40" rx="20" fill="#E6F7EC" stroke="#2E8B57" stroke-width="2.5"/>
+  <rect x="220" y="415" width="150" height="30" rx="15" fill="none" stroke="#2E8B57" stroke-width="1"/>
+  <text x="295" y="435" text-anchor="middle" font-size="13" font-weight="bold" fill="#2E8B57">#goalAchieved</text>
+
+  <!-- === Arrow 1: initial → working (promptSent) === -->
+  <line x1="158" y1="120" x2="216" y2="120" stroke="#888" stroke-width="1.8" marker-end="url(#a-gray)"/>
+  <rect x="150" y="104" width="74" height="14" rx="3" fill="white" opacity="0.9"/>
+  <text x="187" y="115" text-anchor="middle" font-size="10" fill="#666">promptSent</text>
+
+  <!-- === Arrow 2: working → waitingForHuman (permissionRequested) === -->
+  <line x1="370" y1="120" x2="506" y2="120" stroke="#E68A00" stroke-width="1.8" marker-end="url(#a-orange)"/>
+  <rect x="373" y="104" width="130" height="14" rx="3" fill="white" opacity="0.9"/>
+  <text x="438" y="115" text-anchor="middle" font-size="10" fill="#E68A00">permissionRequested</text>
+
+  <!-- === Arrow 3: waitingForHuman → working (humanResponded, arc below) === -->
+  <path d="M 620,140 C 620,230 295,230 295,140" fill="none" stroke="#E68A00" stroke-width="1.8" marker-end="url(#a-orange)"/>
+  <rect x="422" y="227" width="106" height="14" rx="3" fill="white" opacity="0.9"/>
+  <text x="475" y="238" text-anchor="middle" font-size="10" fill="#E68A00">humanResponded</text>
+
+  <!-- === Arrow 4: working → endTurn (turnEnded) === -->
+  <line x1="295" y1="140" x2="295" y2="276" stroke="#2C67E5" stroke-width="1.8" marker-end="url(#a-blue)"/>
+  <rect x="300" y="199" width="64" height="14" rx="3" fill="white" opacity="0.9"/>
+  <text x="332" y="210" text-anchor="middle" font-size="10" fill="#2C67E5">turnEnded</text>
+
+  <!-- === Arrow 5: endTurn → working (promptSent, arc on left) === -->
+  <path d="M 220,300 C 152,300 152,120 220,120" fill="none" stroke="#2C67E5" stroke-width="1.8" marker-end="url(#a-blue)"/>
+  <rect x="90" y="199" width="64" height="14" rx="3" fill="white" opacity="0.9"/>
+  <text x="122" y="210" text-anchor="middle" font-size="10" fill="#2C67E5">promptSent</text>
+
+  <!-- === Arrow 6: endTurn → goalAchieved (goalReached) === -->
+  <line x1="295" y1="320" x2="295" y2="406" stroke="#2E8B57" stroke-width="1.8" marker-end="url(#a-green)"/>
+  <rect x="300" y="355" width="68" height="14" rx="3" fill="white" opacity="0.9"/>
+  <text x="334" y="366" text-anchor="middle" font-size="10" fill="#2E8B57">goalReached</text>
+
+</svg>
