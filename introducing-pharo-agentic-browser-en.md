@@ -190,7 +190,7 @@ Any ACP-compatible agent - preset list:
 | **Copilot CLI** | ACP built-in (`copilot --acp --stdio`) |
 | **Cursor CLI** | ACP built-in (`agent acp`) |
 
-Also supported: OpenCode, Kilo Code, and more
+Also supported: OpenCode, Kilo Code, Kiro CLI and more 
 
 > **Recommended**: Install [smalltalk-dev-plugin](https://github.com/mumez/smalltalk-dev-plugin) in your agent for better Smalltalk
 
@@ -284,6 +284,22 @@ Files are saved to `<agenticBrowserRoot>/screenshots/sc-YYYYMMDD-NNN.png`.
 
 ---
 
+# File Attachments
+
+Click the **+** button to attach any file from disk:
+
+1. Click the button — a file selection dialog opens
+2. Choose a file — a mention like `[filename]` is inserted in the input
+3. Send — the file's contents are attached as a text resource
+
+<div class="highlight-box">
+Oversized files are truncated to <code>maxAttachmentSize</code> (default 5MB) before being embedded in the prompt.
+</div>
+
+Removing the `[filename]` mention text before sending cancels the attachment.
+
+---
+
 # Goal Setting
 
 Right-click a topic → **Set Goal...** to enter a completion condition:
@@ -337,10 +353,38 @@ Per-topic state (settings, status, conversation) is fully persisted.
 
 ---
 
+# Image Change Watching
+
+AgenticBrowser watches the image for edits to a topic's tracked packages:
+
+- Right-click a topic → **Set Target Packages...** to configure prefixes (e.g. `#('AgenticBrowser-*')`)
+- When a matching class/method is saved, a system message appears in chat and the package is exported after confirmation
+- Edits to **untracked** packages are collected — promote them via **Apply Updated External Packages**
+
+<div class="highlight-box">
+Keeps the AI's view of the Tonel source in sync with whatever you (or the AI) change live in the image.
+</div>
+
+---
+
 <!-- _class: section -->
 <!-- _paginate: false -->
 
 ## Customization
+
+---
+
+# Topic Template
+
+Every new topic's working directory is seeded from `<agenticBrowserRoot>/topic-template`:
+
+- Ships with a default `CLAUDE.md` / `AGENTS.md` tuned for the `smalltalk-dev-plugin`
+- Drop in `.claude`, `.opencode`, or other agent config directories — skills, commands, rules shared across all topics
+- Replace the defaults with your own customized versions any time
+
+<div class="highlight-box">
+Saves you from reconfiguring the coding agent for every new topic. Not applied when a topic points at an existing project directory.
+</div>
 
 ---
 
@@ -392,6 +436,19 @@ The agent appears as a preset in the **New Topic** dialog on next open.
 | `exportApprovalWaitTimeoutSeconds` | `30` | Timeout for package export approval |
 
 Settings can also be configured **per-topic** via right-click → **Edit Settings...**
+
+---
+
+# Other Interfaces: Web UI & Scripting API
+
+Two more ways to work with AgenticBrowser, beyond the Spec UI:
+
+- **Web UI** — browser-based interface over WebSocket; multiple tabs, live topic updates
+- **Scripting API** — headless DSL to build and run multi-topic orchestrations from code (sequential / parallel steps, save & load)
+
+<div class="highlight-box">
+Covered in more depth in dedicated slides — stay tuned.
+</div>
 
 ---
 
