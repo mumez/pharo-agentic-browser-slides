@@ -443,7 +443,7 @@ Settings can also be configured **per-topic** via right-click → **Edit Setting
 
 Two more ways to work with AgenticBrowser, beyond the Spec UI:
 
-- **Web UI** — browser-based interface over WebSocket; multiple tabs, live topic updates
+- **Web UI** — browser-based interface over WebSocket; mobile friendly, live topic updates
 - **Scripting API** — headless DSL to build and run multi-topic orchestrations from code (sequential / parallel steps, save & load)
 
 <div class="highlight-box">
