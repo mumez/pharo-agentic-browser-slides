@@ -158,15 +158,30 @@ http://localhost:8080/assets/agentic-browser/
 
 # Screens — Desktop
 
-*(Screenshot placeholder: topic list on the left, chat conversation with an agent on the right, similar to the Spec2 desktop UI)*
+![h:520px](images/web-ui-desktop-1.png)
 
 ---
 
-<!-- _class: image -->
+<!-- _class: column-layout -->
+
+<style scoped>
+section.column-layout { justify-content: center; gap: 40px; }
+.column { width: auto; text-align: center; }
+.column img { height: 560px; }
+</style>
 
 # Screens — Mobile
 
-*(Screenshot placeholder: topic list view and chat detail view stacked for narrow screens, e.g. a smartphone)*
+<div class="column">
+
+![](images/web-ui-mobile-1.png)
+
+</div>
+<div class="column">
+
+![](images/web-ui-mobile-2.png)
+
+</div>
 
 ---
 
