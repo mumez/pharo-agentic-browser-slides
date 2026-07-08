@@ -13,3 +13,9 @@ Slide collection of [pharo-agentic-browser](https://github.com/mumez/pharo-agent
 - [pharo-agentic-browser Web UI (HTML)](https://mumez.github.io/pharo-agentic-browser-slides/pharo-agentic-browser-web-ui-en.html)
 - [pharo-agentic-browser Web UI (PDF)](https://mumez.github.io/pharo-agentic-browser-slides/pharo-agentic-browser-web-ui-en.pdf)
 - [Source (Marp markdown)](pharo-agentic-browser-web-ui-en.md)
+
+## Scripting API Slides
+
+- [pharo-agentic-browser Scripting API (HTML)](https://mumez.github.io/pharo-agentic-browser-slides/pharo-agentic-browser-scripting-en.html)
+- [pharo-agentic-browser Scripting API (PDF)](https://mumez.github.io/pharo-agentic-browser-slides/pharo-agentic-browser-scripting-en.pdf)
+- [Source (Marp markdown)](pharo-agentic-browser-scripting-en.md)
