@@ -246,6 +246,10 @@ script isRunning.
 
 `forkRun` is a shorthand for `forkRunThen: [ :orc | ]`.
 
+<div class="highlight-box">
+While a background orchestration runs, open the <strong>Spec UI</strong> or <strong>Web UI</strong> to watch it live — think messages, permission confirmations, and topic progress all show up there.
+</div>
+
 ---
 
 # Cancel & Resume
@@ -309,6 +313,25 @@ Adjust globally or per orchestration/group:
 ```smalltalk
 script settings orchestrationStepWaitTimeoutSeconds: 1800.
 ```
+
+---
+
+# Keeping Topics for Review
+
+| Setting | Default | Effect |
+|---------|---------|--------|
+| `lingerOrchestrationTopicsAfterRun` | `false` | Whether topics stay in the Topic Manager after the orchestration finishes |
+
+- `false` — topics are removed from the Topic Manager once the run completes
+- `true` — topics remain, so you can review the whole run's progress from the UI afterward
+
+```smalltalk
+script settings lingerOrchestrationTopicsAfterRun: true.
+```
+
+<div class="highlight-box">
+Set it to <code>true</code> when you want to go back through the Spec UI or Web UI later and retrace how the result was reached.
+</div>
 
 ---
 
