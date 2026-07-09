@@ -306,7 +306,7 @@ A saved orchestration can also be loaded straight into a new group with <code>or
 | Setting | Default | Scope |
 |---------|---------|-------|
 | `orchestrationStepWaitTimeoutSeconds` | 900 s | Per topic step |
-| `orchestrationGroupItemWaitTimeoutSeconds` | 900 s | Per group item running in `para:` |
+| `orchestrationGroupItemWaitTimeoutSeconds` | 3600 s | Per group item running in `para:` |
 
 Adjust globally or per orchestration/group:
 
