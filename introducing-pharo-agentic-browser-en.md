@@ -243,7 +243,7 @@ Each topic follows a clear state machine:
 When the AI requests permission:
 
 - Status changes to `?` (waitingForHuman)
-- **Send** button becomes **Confirm**
+- **Send** button becomes **Allow**
 - **Cancel** button becomes **Deny**
 
 Respond by clicking the button — the AI resumes seamlessly.
@@ -444,11 +444,9 @@ Settings can also be configured **per-topic** via right-click → **Edit Setting
 Two more ways to work with AgenticBrowser, beyond the Spec UI:
 
 - **Web UI** — browser-based interface over WebSocket; mobile friendly, live topic updates
+  → [Web UI slides](https://mumez.github.io/pharo-agentic-browser-slides/pharo-agentic-browser-web-ui-en.html)
 - **Scripting API** — headless DSL to build and run multi-topic orchestrations from code (sequential / parallel steps, save & load)
-
-<div class="highlight-box">
-Covered in more depth in dedicated slides — stay tuned.
-</div>
+  → [Scripting API slides](https://mumez.github.io/pharo-agentic-browser-slides/pharo-agentic-browser-scripting-en.html)
 
 ---
 
