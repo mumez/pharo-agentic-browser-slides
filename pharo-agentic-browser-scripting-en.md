@@ -97,7 +97,8 @@ An optional package that lets you <strong>orchestrate AgenticBrowser topics from
 ```smalltalk
 AgenticBrowser runBy: [ :builder |
     builder seq: {
-        builder topicBy: [ :t | t prompt: 'Write a one-sentence summary of Pharo.' ]
+        builder topicBy: [ :t | t prompt: 'List 3 Pharo Smalltalk features.' ].
+        builder topicBy: [ :t | t prompt: 'Write a one-sentence summary of previous features.' ].
     } agentBy: [ :a | a claude ] ].
 ```
 
@@ -106,7 +107,8 @@ AgenticBrowser runBy: [ :builder |
 # Orchestration Groups
 
 - Coordinate multiple **whole orchestrations**, not just topics within one
-- Nest `seq:` / `para:` of orchestrations — and nest groups inside groups
+- Nest `seq:` / `para:` of orchestrations
+- Nest groups inside groups
 - Enables patterns like **Arena** (same task, different agents, pick the best) or fan-out research merged into one synthesis step
 
 ---
@@ -222,6 +224,18 @@ AgenticBrowser groupRunBy: [ :groupBuilder |
     agentBy: [ :a | a kilo ]
 ].
 ```
+
+---
+
+# A Practical Example: To-Do App
+
+A full worked example is available in the repo docs:
+[to-do-list-orchestration-script.md](https://github.com/mumez/pharo-agentic-browser/blob/develop/docs/to-do-list-orchestration-script.md)
+
+- Builds a complete **Spec2 To-do list app** in Pharo from scratch, with TDD
+- **6 agents, 7 phases**: setup → parallel research → design → implementation → UI testing → review → documentation
+- Mixes `seq:` / `para:`, lightweight vs. full models per phase, and a `goal:` to drive the implementation step until all tests pass
+- A copy-paste-ready script — shows how far a single orchestration script can go
 
 ---
 
