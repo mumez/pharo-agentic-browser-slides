@@ -242,6 +242,47 @@ A full worked example is available in the repo docs:
 <!-- _class: section -->
 <!-- _paginate: false -->
 
+## AI-Authored Orchestration
+
+---
+
+# The `ab-scripting-feature-dev` Skill
+
+<div class="highlight-box">
+Agent skill that lets the <strong>agent itself write the orchestration script</strong> — you describe the feature, it builds the DSL.
+</div>
+
+- Ask for a feature in plain language; the skill turns it into a runnable Scripting DSL orchestration targeting your own project
+- Composes a sensible phase pipeline automatically: **plan (if needed) → TDD implementation → test → lint & style review**
+- Previews the generated script as `docs/scripting-features/feature-<name>.scripting.md` before anything touches your codebase
+
+---
+
+# Preview, Then Run
+
+- Nothing executes until you **explicitly approve** the previewed script
+- Once approved, it's run via `st-eval` against the target repo (`sharedDirectoryPath:`)
+- While it runs, watch progress live in the **Spec UI** or **Web UI** — same as any orchestration
+
+<div class="highlight-box">
+If a step stalls or times out, the skill retries automatically. You can also inspect and retry manually through <code>AbOrchestrationManager</code>.
+</div>
+
+---
+
+# Built From This Skill: RediStick Time Series
+
+The skill isn't just a demo — it has shipped real features.
+
+- RediStick's Time Series support was implemented by **running the orchestration script this skill generated**
+- Generated script example: [scripting-features/feature-ts-mget.scripting.md](https://github.com/mumez/RediStick/blob/develop/doc/scripting-features/feature-ts-mget.scripting.md)
+- Same shape as the To-Do app example — plan/implement/test/review — applied to a real production codebase
+
+---
+
+<!-- _class: section -->
+<!-- _paginate: false -->
+
 ## Execution Variations
 
 ---
