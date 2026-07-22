@@ -274,8 +274,8 @@ If a step stalls or times out, the skill retries automatically. You can also ins
 
 The skill isn't just a demo — it has shipped real features.
 
-- RediStick's Time Series support was implemented by **running the orchestration script this skill generated**
-- Generated script example: [scripting-features/feature-ts-mget.scripting.md](https://github.com/mumez/RediStick/blob/develop/doc/scripting-features/feature-ts-mget.scripting.md)
+- [RediStick](https://github.com/mumez/RediStick/)'s Time Series support was implemented by **running the orchestration script this skill generated**
+- Generated script example: [scripting-features/feature-ts-mrange-mrevrange.scripting.md](https://github.com/mumez/RediStick/blob/develop/doc/scripting-features/feature-ts-mrange-mrevrange.scripting.md)
 - Same shape as the To-Do app example — plan/implement/test/review — applied to a real production codebase
 
 ---
