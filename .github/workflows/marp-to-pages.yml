@@ -57,6 +57,12 @@ jobs:
           input: pharo-agentic-browser-scripting-en.md
           output-basename: pharo-agentic-browser-scripting-en
 
+      - name: Marp Build (Scripting, ja)
+        uses: ./.github/actions/marp-build
+        with:
+          input: pharo-agentic-browser-scripting-ja.md
+          output-basename: pharo-agentic-browser-scripting-ja
+
       - name: Copy HTML as index and add .nojekyll
         run: cp build/introducing-pharo-agentic-browser-en.html build/index.html && touch build/.nojekyll
 

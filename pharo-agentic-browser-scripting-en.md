@@ -35,7 +35,7 @@ section > h1:first-child::after {
 
 # pharo-agentic-browser Scripting API
 
-### **Headless Multi-Agent Orchestration, Driven by Code**
+### **Multi-Agent Orchestration, Driven by Smalltalk**
 Masashi Umezawa
 https://github.com/mumez/pharo-agentic-browser
 
@@ -67,7 +67,7 @@ https://github.com/mumez/pharo-agentic-browser
 An optional package that lets you <strong>orchestrate AgenticBrowser topics from code</strong> — no UI interaction required.
 </div>
 
-- Write a small Smalltalk script; AgenticBrowser creates topics, runs the agents, routes results between them, and blocks until everything completes
+- Write a small Smalltalk script; AgenticBrowser creates topics, runs the agents, collects results between them, and blocks until everything completes
 - A third interface alongside the Spec UI and Web UI
 
 ---
