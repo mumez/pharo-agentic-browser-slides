@@ -1,0 +1,35 @@
+name: marp-build
+description: Build HTML and PDF outputs from a Marp markdown slide deck
+
+inputs:
+  input:
+    description: Path to the source markdown file
+    required: true
+  output-basename:
+    description: Basename (without extension) for the generated HTML/PDF files under build/
+    required: true
+  theme:
+    description: Path to the Marp theme CSS file
+    required: false
+    default: ./classmethod-theme.css
+  marp-cli-version:
+    description: Tag of the marpteam/marp-cli docker image to use
+    required: false
+    default: v4.2.3
+
+runs:
+  using: composite
+  steps:
+    - name: Marp Build (HTML)
+      uses: docker://marpteam/marp-cli:${{ inputs.marp-cli-version }}
+      with:
+        args: --theme ${{ inputs.theme }} -o build/${{ inputs.output-basename }}.html -- ${{ inputs.input }}
+      env:
+        MARP_USER: root:root
+
+    - name: Marp Build (PDF)
+      uses: docker://marpteam/marp-cli:${{ inputs.marp-cli-version }}
+      with:
+        args: --theme ${{ inputs.theme }} --allow-local-files -o build/${{ inputs.output-basename }}.pdf -- ${{ inputs.input }}
+      env:
+        MARP_USER: root:root

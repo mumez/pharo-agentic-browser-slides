@@ -19,7 +19,7 @@ jobs:
     steps:
 
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       - name: Ensure build dir exists
         run: mkdir -p build
@@ -27,47 +27,29 @@ jobs:
       - name: Copy images directory (if exists)
         run: if [[ -d images ]]; then cp -R images build/images; fi
 
-      - name: Marp Build (HTML)
-        uses: docker://marpteam/marp-cli:v4.2.3
+      - name: Marp Build (Introducing)
+        uses: ./.github/actions/marp-build
         with:
-          args: --theme ./classmethod-theme.css -o build/introducing-pharo-agentic-browser-en.html -- introducing-pharo-agentic-browser-en.md
-        env:
-          MARP_USER: root:root
+          input: introducing-pharo-agentic-browser-en.md
+          output-basename: introducing-pharo-agentic-browser-en
 
-      - name: Marp Build (PDF)
-        uses: docker://marpteam/marp-cli:v4.2.3
+      - name: Marp Build (Introducing, ja)
+        uses: ./.github/actions/marp-build
         with:
-          args: --theme ./classmethod-theme.css --allow-local-files -o build/introducing-pharo-agentic-browser-en.pdf -- introducing-pharo-agentic-browser-en.md
-        env:
-          MARP_USER: root:root
+          input: introducing-pharo-agentic-browser-ja.md
+          output-basename: introducing-pharo-agentic-browser-ja
 
-      - name: Marp Build Web UI (HTML)
-        uses: docker://marpteam/marp-cli:v4.2.3
+      - name: Marp Build (Web UI)
+        uses: ./.github/actions/marp-build
         with:
-          args: --theme ./classmethod-theme.css -o build/pharo-agentic-browser-web-ui-en.html -- pharo-agentic-browser-web-ui-en.md
-        env:
-          MARP_USER: root:root
+          input: pharo-agentic-browser-web-ui-en.md
+          output-basename: pharo-agentic-browser-web-ui-en
 
-      - name: Marp Build Web UI (PDF)
-        uses: docker://marpteam/marp-cli:v4.2.3
+      - name: Marp Build (Scripting)
+        uses: ./.github/actions/marp-build
         with:
-          args: --theme ./classmethod-theme.css --allow-local-files -o build/pharo-agentic-browser-web-ui-en.pdf -- pharo-agentic-browser-web-ui-en.md
-        env:
-          MARP_USER: root:root
-
-      - name: Marp Build Scripting (HTML)
-        uses: docker://marpteam/marp-cli:v4.2.3
-        with:
-          args: --theme ./classmethod-theme.css -o build/pharo-agentic-browser-scripting-en.html -- pharo-agentic-browser-scripting-en.md
-        env:
-          MARP_USER: root:root
-
-      - name: Marp Build Scripting (PDF)
-        uses: docker://marpteam/marp-cli:v4.2.3
-        with:
-          args: --theme ./classmethod-theme.css --allow-local-files -o build/pharo-agentic-browser-scripting-en.pdf -- pharo-agentic-browser-scripting-en.md
-        env:
-          MARP_USER: root:root
+          input: pharo-agentic-browser-scripting-en.md
+          output-basename: pharo-agentic-browser-scripting-en
 
       - name: Copy HTML as index and add .nojekyll
         run: cp build/introducing-pharo-agentic-browser-en.html build/index.html && touch build/.nojekyll
