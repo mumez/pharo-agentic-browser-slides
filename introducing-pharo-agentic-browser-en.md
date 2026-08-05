@@ -64,7 +64,7 @@ https://github.com/mumez/pharo-agentic-browser
 # pharo-agentic-browser
 
 <div class="highlight-box">
-A <strong>Pharo-native GUI tool</strong> for managing multiple AI coding agent sessions — Claude Code, Gemini CLI, OpenCode, and others — in parallel from inside your Pharo image.
+An <strong>Integrated AI coding tool</strong> that allows you to use multiple AI coding agents — Claude Code, Codex, OpenCode, and others — from within Pharo.
 </div>
 
 ---
@@ -79,7 +79,7 @@ A <strong>Pharo-native GUI tool</strong> for managing multiple AI coding agent s
 
 # Core Workflow
 
-Each session is called a **topic**:
+Each coding session is managed as a **topic**:
 
 1. Create a topic and select an ACP-compatible agent
 2. Type a request + mention code with `@ClassName` or attach a screenshot
@@ -103,7 +103,7 @@ Dedicated GUI tools for AI coding agents are becoming standard:
 
 - **Claude Desktop** — Claude with tools, MCP, and file access
 - **Codex Desktop** — OpenAI's autonomous coding environment
-- **Cursor / Windsurf** — AI-native editors
+- **Cursor / Antigravity / Kiro** — AI-native editors
 
 These tools lower the barrier for interacting with AI agents beyond simple chat.
 
@@ -117,9 +117,9 @@ table { font-size: 26px; }
 
 | Era | Paradigm | Examples |
 |-----|----------|---------|
-| Early | Chat in editor sidebar | ChatGPT, GitHub Copilot |
-| Now | AI-first IDE with agent mode | Cursor, Windsurf |
-| Emerging | **Delegate full tasks to agents** | Antigravity 2.0, Codex Desktop |
+| Early Days | Chat in editor sidebar | ChatGPT, GitHub Copilot |
+| Little While Ago | AI-first IDE with agent mode | Cursor, Windsurf |
+| Now | **Delegate full tasks to agents** | Antigravity, Codex Desktop |
 
 The AI can now handle **entire feature-level tasks**, not just line completions.
 
@@ -212,7 +212,7 @@ Also supported: OpenCode, Kilo Code, Kiro CLI and more
 5. (Optional) Right-click → **Set Target Packages...** to configure tracked packages
 
 <div class="highlight-box">
-The first message is automatically prefixed with <code>/st-buddy</code> to activate the Smalltalk buddy agent mode.
+The first message is automatically prefixed with <code>/st-buddy</code> to activate the Smalltalk buddy skill.
 </div>
 
 ---
@@ -362,7 +362,7 @@ AgenticBrowser watches the image for edits to a topic's tracked packages:
 - Edits to **untracked** packages are collected — promote them via **Apply Updated External Packages**
 
 <div class="highlight-box">
-Keeps the AI's view of the Tonel source in sync with whatever you (or the AI) change live in the image.
+Keeps the AI's view of the Tonel source in sync with whatever you change live in the image.
 </div>
 
 ---
@@ -443,9 +443,9 @@ Settings can also be configured **per-topic** via right-click → **Edit Setting
 
 Two more ways to work with AgenticBrowser, beyond the Spec UI:
 
-- **Web UI** — browser-based interface over WebSocket; mobile friendly, live topic updates
+- **Web UI** — web browser interface over WebSocket; mobile friendly, live topic updates
   → [Web UI slides](https://mumez.github.io/pharo-agentic-browser-slides/pharo-agentic-browser-web-ui-en.html)
-- **Scripting API** — headless DSL to build and run multi-topic orchestrations from code (sequential / parallel steps, save & load)
+- **Scripting API** — simple DSL to build and run multi-agent orchestrations from code (sequential / parallel steps, save & load)
   → [Scripting API slides](https://mumez.github.io/pharo-agentic-browser-slides/pharo-agentic-browser-scripting-en.html)
 
 ---

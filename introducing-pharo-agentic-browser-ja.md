@@ -64,7 +64,7 @@ https://github.com/mumez/pharo-agentic-browser
 # pharo-agentic-browser
 
 <div class="highlight-box">
-Claude Code、Gemini CLI、OpenCode など、複数の <strong>AI コーディングエージェント</strong>を Pharo から利用できる<strong>AIコーディングツール</strong>です。
+Claude Code、Codex、OpenCode など、複数のAI コーディングエージェントを Pharo から利用できる<strong>統合AIコーディングツール</strong>です。
 </div>
 
 ---
@@ -103,7 +103,7 @@ AI コーディングエージェント専用の GUI ツールが標準になり
 
 - **Claude Desktop** — ツール、MCP、ファイルアクセスを備えた Claude
 - **Codex Desktop** — OpenAI の自律的なコーディング環境
-- **Cursor / Windsurf** — AI ネイティブなエディタ
+- **Cursor / Antigravity / Kiro** — AI ネイティブなエディタ
 
 これらのツールは、AI エージェントとやり取りする際の敷居を下げ、単純なチャットを超えたものになっています。
 
@@ -117,9 +117,9 @@ table { font-size: 26px; }
 
 | 時代 | パラダイム | 例 |
 |-----|----------|---------|
-| 初期 | エディタサイドバーでのチャット | ChatGPT, GitHub Copilot |
-| 現在 | エージェントモードを持つ AI ファーストな IDE | Cursor, Windsurf |
-| 新興 | **タスク全体をエージェントに委譲** | Antigravity 2.0, Codex Desktop |
+| 黎明期 | エディタサイドバーでのチャット | ChatGPT, GitHub Copilot |
+| 少し前 | エージェントモードを持つ AI ファーストな IDE | Cursor, Windsurf |
+| 現在 | **タスク全体をエージェントに委譲** | Antigravity, Codex Desktop |
 
 AI は、単なるコード行の補完ではなく、**機能単位のタスク**を扱えるようになりました。
 
@@ -334,7 +334,7 @@ topic announcer
 topic whenGoalAchieved: [:goal | Transcript crShow: goal result].
 ```
 
-ゴールイベントを独自の自動化ワークフローに統合できます。
+ゴール達成イベントを独自の自動化ワークフローに統合できます。
 
 ---
 
@@ -349,7 +349,7 @@ AbTopicManager save.
 AbTopicManager load.
 ```
 
-トピックごとの状態（設定、ステータス、会話）は完全に永続化されます。
+トピックごとの状態（設定、ステータス、会話）はすべて永続化されます。
 
 ---
 
@@ -462,10 +462,10 @@ Spec UI 以外にも、AgenticBrowser を利用する方法が2つあります:
 **pharo-agentic-browser** は、コーディングエージェントへの委譲というパラダイムを Pharo にもたらします:
 
 - **ネイティブ GUI** — イメージから離れずに複数の AI セッションを管理
-- **エージェント非依存** — ACP 対応エージェントであれば何でも利用可能
+- **エージェント非依存** — ACP 対応エージェントであればどれでも利用可能
 - **リッチなコンテキスト** — コードメンション、ドラッグ&ドロップ、スクリーンキャプチャ
 - **Human-in-the-Loop** — 会話の中で承認、割り込みダイアログなし
-- **ゴール駆動** — 完了条件を設定し、結果にフック
+- **ゴール駆動** — 完了条件を設定し、フックも指定可能
 - **拡張可能** — 最小限の設定でカスタム MCP サーバーやエージェントを追加
 
 ---
