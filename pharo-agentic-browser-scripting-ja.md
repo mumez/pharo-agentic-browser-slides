@@ -159,7 +159,7 @@ Metacello new
 
 # 単一トピック
 
-`runBy:` はオーケストレーションを構築してすぐに実行し、完了までブロックします:
+`runBy:` はオーケストレーションを構築してすぐに実行し、完了までブロック:
 
 ```smalltalk
 AgenticBrowser runBy: [ :builder |
@@ -170,13 +170,13 @@ AgenticBrowser runBy: [ :builder |
     } agentBy: [ :a | a claude ] ].
 ```
 
-`scriptBy:` は実行せずに構築だけを行い、後で確認したり `forkRun` したりできます。
+`scriptBy:` は実行せずに構築だけを行い、後で確認したり `forkRun` したりが可能
 
 ---
 
 # 逐次ステップ — `seq:`
 
-各トピックの結果は、次のトピックのプロンプトに引き継がれます:
+各トピックの結果は、次のトピックのプロンプトに引き継がれる:
 
 ```smalltalk
 AgenticBrowser runBy: [ :builder |
@@ -192,7 +192,7 @@ AgenticBrowser runBy: [ :builder |
 
 # 並列ステップ — `para:`
 
-トピックは並行実行され、結果は次のステップのためにまとめられます:
+トピックは並行実行され、結果は次のステップのためにまとめられる:
 
 ```smalltalk
 AgenticBrowser runBy: [ :builder |
@@ -202,7 +202,7 @@ AgenticBrowser runBy: [ :builder |
     } agentBy: [ :a | a claude ] ].
 ```
 
-`seq:` と `para:` は自由に組み合わせ可能 — 例: 並列調査 → 逐次統合。
+`seq:` と `para:` は自由に組み合わせ可能 — 例: 並列調査 → 逐次統合
 
 ---
 
@@ -229,7 +229,7 @@ AgenticBrowser groupRunBy: [ :groupBuilder |
 
 # 実践例: To-Do アプリ
 
-リポジトリのドキュメントに、完全なサンプルがあります:
+完全なサンプルはリポジトリのドキュメントを参照:
 [to-do-list-orchestration-script.md](https://github.com/mumez/pharo-agentic-browser/blob/develop/docs/to-do-list-orchestration-script.md)
 
 - TDD で完全な **Spec2 To-do リストアプリ**をゼロから構築
@@ -289,7 +289,7 @@ AgenticBrowser groupRunBy: [ :groupBuilder |
 
 # 同期実行とバックグラウンド実行
 
-**同期実行** — `runBy:` / `script run` はすべて完了するまでブロックします。
+**同期実行** — `runBy:` / `script run` はすべて完了するまでブロック
 
 **バックグラウンド実行** — 長時間かかるオーケストレーション向け:
 
@@ -299,7 +299,7 @@ script forkRunThen: [ :orc | Transcript crShow: 'Done: ' , orc result ].
 script isRunning.
 ```
 
-`forkRun` は `forkRunThen: [ :orc | ]` の省略形です。
+`forkRun` は `forkRunThen: [ :orc | ]` の省略形
 
 <div class="highlight-box">
 バックグラウンドでオーケストレーションが実行されている間も、<strong>Spec UI</strong> や <strong>Web UI</strong> を開けばリアルタイムに確認できます。thinkingメッセージ、権限確認、トピックの進捗もすべてそこに表示されます。
@@ -399,7 +399,7 @@ Spec UI や Web UI で、結果に至るまでの経緯を後で振り返りた�
 
 # まとめ
 
-**Scripting API** は、コード駆動によるヘッドレスなオーケストレーションを AgenticBrowser にもたらします:
+**Scripting API** は、コード駆動によるヘッドレスなオーケストレーションを AgenticBrowser にもたらす:
 
 - **シンプルな DSL** — `seq:` / `para:` / `topicBy:` / `agentBy:`、人間にも AI エージェントにも扱いやすい
 - **オーケストレーショングループ** — ワークフロー全体を並列・逐次・ネストで構成
