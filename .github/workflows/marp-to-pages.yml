@@ -45,6 +45,12 @@ jobs:
           input: pharo-agentic-browser-web-ui-en.md
           output-basename: pharo-agentic-browser-web-ui-en
 
+      - name: Marp Build (Web UI, ja)
+        uses: ./.github/actions/marp-build
+        with:
+          input: pharo-agentic-browser-web-ui-ja.md
+          output-basename: pharo-agentic-browser-web-ui-ja
+
       - name: Marp Build (Scripting)
         uses: ./.github/actions/marp-build
         with:
