@@ -35,7 +35,7 @@ section > h1:first-child::after {
 
 # pharo-agentic-browser Web UI
 
-### **Browser-Based Access to Your AI Agent Sessions**
+### **Web Browser UI for Your AI Coding Sessions**
 Masashi Umezawa
 https://github.com/mumez/pharo-agentic-browser
 
@@ -88,7 +88,7 @@ An optional package that lets you use <strong>AgenticBrowser</strong> from any w
 
 # Real-Time Sync via WebSocket (Ripple)
 
-- Powered by [Ripple](https://github.com/mumez/Ripple), a WebSocket framework
+- Powered by [Ripple](https://github.com/mumez/Ripple), a WebSocket framework for Pharo
 - Updates propagate **instantly, without reloading**:
   - New messages
   - New/renamed/deleted topics
@@ -139,7 +139,7 @@ https://github.com/mumez/pharo-agentic-browser-web-ui
 AgenticBrowser startWebUI.
 ```
 
-- Open in a browser:
+- Open in a web browser:
 
 ```
 http://localhost:8080/assets/agentic-browser/
@@ -199,7 +199,7 @@ section.column-layout { justify-content: center; gap: 40px; }
 | Topic management | Add, copy, delete |
 | Agent config | Change mode, change model |
 | Prompting | Send prompt, cancel |
-| Approvals | Approve / deny permission requests |
+| Approvals | Allow / deny permission requests |
 
 ---
 
@@ -247,7 +247,7 @@ Accessing over anything other than <code>localhost</code>? Route through a rever
 | Bind address | e.g. listen on all interfaces |
 | Assets directory | Where the built client is served from |
 
-Configurable via `RpServerSettings` or environment variables.
+Configurable via `RpServerSettings` or environment variables like `PHARO_RIPPLE_PORT`.
 
 ---
 
