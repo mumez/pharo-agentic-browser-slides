@@ -73,7 +73,7 @@ A <strong>Pharo-native GUI tool</strong> for managing multiple AI coding agent s
 
 # At a Glance
 
-![w:700px](images/agentic-browser.png)
+![w:900px](images/agentic-browser.png)
 
 ---
 
