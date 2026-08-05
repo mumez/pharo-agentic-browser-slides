@@ -35,7 +35,7 @@ section > h1:first-child::after {
 
 # pharo-agentic-browser の紹介
 
-### **PharoのAIコーディング環境**
+### **Pharoの統合AIコーディング環境**
 梅澤 真史
 https://github.com/mumez/pharo-agentic-browser
 
@@ -136,7 +136,7 @@ Pharo 開発者も同じパラダイムを享受すべきです:
 - **複数プロジェクト**を1つのイメージ内で並行実行可能
 
 <div class="highlight-box">
-複数の AI エージェントを制御できる Pharo ネイティブな GUI は、自然な次のステップです。
+複数の AI エージェントを制御できる Pharo ネイティブなツールが、次のステップとして自然です。
 </div>
 
 ---
@@ -170,7 +170,7 @@ Metacello new
     load.
 ```
 
-続けてブラウザを開く:
+AgenticBrowserを開く:
 
 ```smalltalk
 AgenticBrowser open.
@@ -212,7 +212,7 @@ OpenCode、Kilo Code、Kiro CLI などにも対応
 5. （任意）右クリック → **Set Target Packages...** で追跡対象パッケージを設定
 
 <div class="highlight-box">
-最初のメッセージには、Smalltalk 開発者スキルを有効化するため自動的に <code>/st-buddy</code> が付与されます。
+最初のメッセージには、Smalltalk開発者スキルを有効化するため、自動的に <code>/st-buddy</code> が付与されます。
 </div>
 
 ---
