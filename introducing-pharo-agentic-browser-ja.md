@@ -167,7 +167,7 @@ Pharo 12+ のイメージで Playground を開き、以下を評価:
 Metacello new
     baseline: 'AgenticBrowser';
     repository: 'github://mumez/pharo-agentic-browser:main/src';
-    load.
+    load: 'all'.
 ```
 
 AgenticBrowserを開く:
@@ -362,7 +362,7 @@ AgenticBrowser は、トピックの追跡対象パッケージへの編集を�
 - **追跡対象外**のパッケージへの編集は収集され、**Apply Updated External Packages** で昇格可能
 
 <div class="highlight-box">
-イメージ内であなたが変更した内容と、AI が見ている Tonel ソースを同期させ続けます。
+イメージ内でユーザ自身が変更した内容と、AI が見ている Tonel ソースとを同期させ続けます。
 </div>
 
 ---

@@ -167,7 +167,7 @@ Open a Playground in a Pharo 12+ image and evaluate:
 Metacello new
     baseline: 'AgenticBrowser';
     repository: 'github://mumez/pharo-agentic-browser:main/src';
-    load.
+    load: 'all'.
 ```
 
 Then open the browser:
