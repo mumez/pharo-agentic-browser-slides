@@ -462,6 +462,9 @@ AgenticBrowser runBy: [ :builder |
 `seq:` と `para:` は自由に組み合わせ可能
  — 例: 並列調査して結果をまとめる → 結果をもとに逐次実行
 
+> 実践例: To-Do アプリ
+> [to-do-list-orchestration-script.md](https://github.com/mumez/pharo-agentic-browser/blob/develop/docs/to-do-list-orchestration-script.md)
+
 ---
 
 <!-- _class: section -->
