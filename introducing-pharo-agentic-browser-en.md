@@ -102,7 +102,7 @@ Each coding session is managed as a **topic**:
 Dedicated GUI tools for AI coding agents are becoming standard:
 
 - **Claude Desktop** — Claude with tools, MCP, and file access
-- **Codex Desktop** — OpenAI's autonomous coding environment
+- **Codex App** — OpenAI's autonomous coding environment
 - **Cursor / Antigravity / Kiro** — AI-native editors
 
 These tools lower the barrier for interacting with AI agents beyond simple chat.
@@ -119,7 +119,7 @@ table { font-size: 26px; }
 |-----|----------|---------|
 | Early Days | Chat in editor sidebar | ChatGPT, GitHub Copilot |
 | Little While Ago | AI-first IDE with agent mode | Cursor, Windsurf |
-| Now | **Delegate full tasks to agents** | Antigravity, Codex Desktop |
+| Now | **Delegate full tasks to agents** | Antigravity 2.0, Codex App |
 
 The AI can now handle **entire feature-level tasks**, not just line completions.
 

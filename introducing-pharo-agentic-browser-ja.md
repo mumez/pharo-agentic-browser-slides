@@ -102,7 +102,7 @@ Claude Code、Codex、OpenCode など、複数のAI コーディングエージ�
 AI コーディングエージェント専用の GUI ツールが標準になりつつあります:
 
 - **Claude Desktop** — ツール、MCP、ファイルアクセスを備えた GUI版Claude
-- **Codex Desktop** — OpenAI の自律的なコーディング環境
+- **Codex App** — OpenAI の自律的なコーディング環境
 - **Cursor / Antigravity / Kiro** — AI ネイティブなエディタ
 
 これらのツールは、AI エージェントとやり取りする際の敷居を下げ、単純なチャットを超えたものになっています。
@@ -119,7 +119,7 @@ table { font-size: 26px; }
 |-----|----------|---------|
 | 黎明期 | エディタサイドバーでのチャット | ChatGPT, GitHub Copilot |
 | 少し前 | エージェントモードを持つ AI ファーストな IDE | Cursor, Windsurf |
-| 現在 | **タスク全体をエージェントに委譲** | Antigravity, Codex Desktop |
+| 現在 | **タスク全体をエージェントに委譲** | Antigravity 2.0, Codex App |
 
 AI は、単なるコード行の補完ではなく、**機能単位のタスク**を扱えるようになりました。
 
