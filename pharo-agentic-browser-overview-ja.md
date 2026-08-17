@@ -33,7 +33,7 @@ section > h1:first-child::after {
 }
 </style>
 
-# pharo-agentic-browser の紹介
+# pharo-agentic-browser 概要
 
 ### **Pharoの統合AIコーディング環境**
 梅澤 真史
@@ -101,7 +101,7 @@ Claude Code、Codex、OpenCode など、複数のAI コーディングエージ�
 
 AI コーディングエージェント専用の GUI ツールが標準になりつつあります:
 
-- **Claude Desktop** — ツール、MCP、ファイルアクセスを備えた GUI版Claude
+- **Claude Desktop** — ツール、MCP、ファイルアクセスを備えた GUI版のClaude
 - **Codex Desktop** — OpenAI の自律的なコーディング環境
 - **Cursor / Antigravity / Kiro** — AI ネイティブなエディタ
 
@@ -109,7 +109,7 @@ AI コーディングエージェント専用の GUI ツールが標準になり
 
 ---
 
-# 変化の流れ: IDE → マルチエージェントへの委譲
+# 変化の流れ: チャット → マルチエージェントへの委譲
 
 <style scoped>
 table { font-size: 26px; }
@@ -120,8 +120,6 @@ table { font-size: 26px; }
 | 黎明期 | エディタサイドバーでのチャット | ChatGPT, GitHub Copilot |
 | 少し前 | エージェントモードを持つ AI ファーストな IDE | Cursor, Windsurf |
 | 現在 | **タスク全体をエージェントに委譲** | Antigravity, Codex Desktop |
-
-AI は、単なるコード行の補完ではなく、**機能単位のタスク**を扱えるようになりました。
 
 ツールは進化しています。UI はもはや「エディタ + チャット」ではなく、**セッションのオーケストレーション** へと向かっています。
 
@@ -159,7 +157,7 @@ Pharo 開発者も同じパラダイムを享受すべき:
 
 ---
 
-# インストール — Pharo 側
+# インストール
 
 Pharo 12+ のイメージで Playground を開き、以下を評価:
 
@@ -180,7 +178,7 @@ AgenticBrowser open.
 
 # インストール — エージェント側
 
-ACP 対応であれば、どのエージェントも利用可能 - プリセット一覧:
+ACP 対応であれば、どのエージェントも利用可能:
 
 | エージェント | インストール |
 |-------|---------|
@@ -246,7 +244,7 @@ AI が承認を要求すると:
 - **Send** ボタンが **Allow** に変化
 - **Cancel** ボタンが **Deny** に変化
 
-ボタンをクリックして応答すると、AI がシームレスに再開します。
+ボタンをクリックして応答すると、AI が再開します。
 
 <div class="highlight-box">
 モーダルダイアログはありません。承認は会話フローの一部です。
@@ -280,8 +278,6 @@ AgenticBrowser は各 `@mention` をTonelのソースとして解決し、ACP �
 3. `@sc-20260528-001.png` のようなメンションが入力欄に挿入される
 4. 送信 — PNG が画像リソースとしてプロンプトに添付される
 
-ファイルは `<agenticBrowserRoot>/screenshots/sc-YYYYMMDD-NNN.png` に保存されます。
-
 ---
 
 # ファイル添付
@@ -293,10 +289,8 @@ AgenticBrowser は各 `@mention` をTonelのソースとして解決し、ACP �
 3. 送信 — ファイルの内容がテキストリソースとして添付される
 
 <div class="highlight-box">
-サイズの大きいファイルは、プロンプトに埋め込まれる前に <code>maxAttachmentSize</code>（デフォルト 5MB）に切り詰められます。
+サイズの大きいファイルは <code>maxAttachmentSize</code>（デフォルト 5MB）に切り詰められます。送信前にメンションテキストを削除すれば添付はキャンセルされます。
 </div>
-
-送信前に `[filename]` のメンションテキストを削除すると、添付はキャンセルされます。
 
 ---
 
@@ -308,33 +302,23 @@ AgenticBrowser は各 `@mention` をTonelのソースとして解決し、ACP �
 all tests pass
 ```
 
-AgenticBrowser は AI にゴール用のプロンプトを送信します:
+AgenticBrowser は AI にゴール用のプロンプトを送信し、`result-<topic-id>.md` が作成されると、トピックは `✓`（`#goalAchieved`）に遷移します。
 
-> *Goal has been set: all tests pass. When the goal is achieved, summarize and report in result-<topic-id>.md. Keep retrying until the goal is achieved.*
-
-`result-<topic-id>.md` が作成されると、トピックは `✓`（`#goalAchieved`）に遷移します。
+ゴール達成時にはアナウンサーやコールバックブロックのフック(whenGoalAchieved)も発火するので、独自の自動化ワークフローに統合できます。
 
 ---
 
-# ゴール達成フック
+# イメージ変更監視
 
-ゴール達成時に2つのフックが発火します:
+トピックに関連するパッケージへの編集をイメージ内で監視:
 
-### アナウンサー
+- トピックを右クリック → **Set Target Packages...** で対象プレフィックスを設定
+- 対象のクラス/メソッドが保存されると、確認の上でパッケージがエクスポートされる
+- **追跡対象外**の編集は候補として収集され、後から昇格可能
 
-```smalltalk
-topic announcer
-    when: AbTopicGoalAchieved
-    do: [:ann | Transcript crShow: ann topic title , ' achieved: ' , ann goal result].
-```
-
-### コールバックブロック
-
-```smalltalk
-topic whenGoalAchieved: [:goal | Transcript crShow: goal result].
-```
-
-ゴール達成イベントを独自の自動化ワークフローに統合できます。
+<div class="highlight-box">
+イメージ内でユーザ自身が変更した内容と、AI が見ている Tonel ソースとを同期させ続けます。
+</div>
 
 ---
 
@@ -350,20 +334,6 @@ AbTopicManager load.
 ```
 
 トピックごとの状態（設定、ステータス、会話）はすべて永続化されます。
-
----
-
-# イメージ変更監視
-
-トピックに関連するパッケージへの編集をイメージ内で監視:
-
-- トピックを右クリック → **Set Target Packages...** で対象プレフィックスを設定（例: `#('AgenticBrowser-*')`）
-- 対象のクラス/メソッドが保存されると、チャットにシステムメッセージが表示され、確認後にパッケージがエクスポートされる
-- **追跡対象外**のパッケージへの編集は追跡候補として収集され、**Apply Updated External Packages** で昇格可能
-
-<div class="highlight-box">
-イメージ内でユーザ自身が変更した内容と、AI が見ている Tonel ソースとを同期させ続けます。
-</div>
 
 ---
 
@@ -383,35 +353,15 @@ AbTopicManager load.
 - 独自にカスタマイズしたものに置き換え可能
 
 <div class="highlight-box">
-新しいトピックごとにコーディングエージェントを再設定する手間を省けます。トピックが既存のプロジェクトディレクトリを指している場合は適用されません。
+新しいトピックごとにコーディングエージェントを再設定する手間を省けます。
 </div>
 
 ---
 
-# MCP サーバーの追加
+# MCP サーバー & カスタムエージェントの追加
 
-AgenticBrowser のルートディレクトリに `mcp.json` を配置:
-
-```json
-{
-  "mcpServers": {
-    "my-server": {
-      "command": "uvx",
-      "args": ["my-server-package"],
-      "env": {"API_KEY": "value"}
-    }
-  }
-}
-```
-
-- 組み込みの `smalltalk-interop` と `smalltalk-validator` サーバーはデフォルトで**自動マージ**される
-- `useDefaultMcpServers: false` を設定すると独自の `mcp.json` のみを使用
-
----
-
-# カスタムエージェントの追加
-
-### Playground から
+- **MCP サーバー** — AgenticBrowser のルートに `mcp.json` を配置。組み込みの `smalltalk-interop`/`smalltalk-validator` は自動マージ（`useDefaultMcpServers: false` で無効化可）
+- **カスタムエージェント** — Playground または `ab-settings.json` からメニューにないコーディングエージェントを登録
 
 ```smalltalk
 AbSettings default codingAgents: (AbSettings default codingAgents copyWith:
@@ -420,33 +370,97 @@ AbSettings default codingAgents: (AbSettings default codingAgents copyWith:
 AbSettings save.
 ```
 
-### または `ab-settings.json` を直接編集
-
-エージェントは次回起動時に **New Topic** ダイアログのプリセットとして表示されます。
-
 ---
 
-# グローバル設定
+# グローバル設定（一部抜粋）
 
 | キー | デフォルト | 説明 |
 |-----|---------|-------------|
 | `useDefaultMcpServers` | `true` | 組み込みの Smalltalk MCP サーバーをマージ |
 | `aiPermissionWaitTimeoutSeconds` | `1800` | 人間の承認待ちタイムアウト |
 | `aiPermissionTimeoutOption` | `#reject_once` | 自動応答: `allow_once`, `allow_always`, `reject_once` |
-| `exportApprovalWaitTimeoutSeconds` | `30` | パッケージエクスポート承認のタイムアウト |
 
 設定は右クリック → **Edit Settings...** から**トピックごと**にも設定可能です。
 
 ---
 
-# その他のインターフェース: Web UI & Scripting API
+<!-- _class: section -->
+<!-- _paginate: false -->
 
-Spec UI 以外にも、AgenticBrowser を利用する方法が2つあります:
+## その他のインターフェース
 
-- **Web UI** — WebSocketを使ったWebブラウザ用インターフェース。モバイル対応、トピックのライブ更新
-  → [Web UI スライド](https://mumez.github.io/pharo-agentic-browser-slides/pharo-agentic-browser-web-ui-en.html)
-- **Scripting API** — 複数エージェントのオーケストレーションを構築・実行するためのシンプルなDSL（逐次/並列ステップ、保存＆読み込み）
-  → [Scripting API スライド](https://mumez.github.io/pharo-agentic-browser-slides/pharo-agentic-browser-scripting-en.html)
+---
+
+# Web UI（概要）
+
+<div class="highlight-box">
+任意の Web ブラウザから <strong>AgenticBrowser</strong> を利用できるオプションパッケージです。
+</div>
+
+- WebSocket フレームワーク [Ripple](https://github.com/mumez/Ripple) により、リロード不要でリアルタイムに同期
+- SolidJS + daisyUI でモバイル端末にも対応
+- Spec UI にある操作（トピック管理、プロンプト送信、承認）はひととおり利用可能
+
+**ユースケース**: 外出先からのスマートフォン確認、ディスプレイのないヘッドレス環境からのアクセスなど
+
+→ 詳細は [Web UI スライド](https://mumez.github.io/pharo-agentic-browser-slides/pharo-agentic-browser-web-ui-ja.html) を参照
+
+---
+
+<!-- _class: image -->
+
+# Web UI 画面イメージ
+
+![h:520px](images/web-ui-desktop-1.png)
+
+---
+
+# Scripting API（概要）
+
+<div class="highlight-box">
+UI操作なしに<strong>Smalltalkコードから AgenticBrowser のトピックをオーケストレーション</strong>できるオプションパッケージです。
+</div>
+
+- `seq:`、`para:`、`topicBy:`、`agentBy:` などわずか数個のメッセージでマルチエージェントのワークフローを構築
+- 結果はステップ間で自動的に受け渡される — 手動での情報のやりとりは不要
+- AI エージェント自身がスクリプトを書いて `st-eval` で実行することも可能（`ab-scripting-feature-dev` スキル）
+
+**ユースケース**: 定型的な AI ワークフローの実行や CI 組み込み、ヘッドレス環境での実行、複雑なマルチエージェント連携
+
+→ 詳細は [Scripting API スライド](https://mumez.github.io/pharo-agentic-browser-slides/pharo-agentic-browser-scripting-ja.html) を参照
+
+---
+
+# Scripting API — 実際の例
+
+逐次ステップ（`seq:`）— 各トピックの結果は次のトピックのプロンプトに引き継がれる:
+
+```smalltalk
+AgenticBrowser runBy: [ :builder |
+    builder seq: {
+        builder topicBy: [ :t |
+            t prompt: 'List 3 Pharo Smalltalk features in one sentence each.' ].
+        builder topicBy: [ :t |
+            t prompt: 'Summarize the feature list from the previous step in one sentence.' ]
+    } agentBy: [ :a | a claude ] ].
+```
+
+---
+
+# Scripting API — 並列ステップの例
+
+トピックは並行実行され、結果は次のステップのためにまとめられる:
+
+```smalltalk
+AgenticBrowser runBy: [ :builder |
+    builder para: {
+        builder topicBy: [ :t | t prompt: 'List 3 Pharo Smalltalk language features.' ].
+        builder topicBy: [ :t | t prompt: 'List 3 Pharo Smalltalk development tools.' ]
+    } agentBy: [ :a | a claude ] ].
+```
+
+`seq:` と `para:` は自由に組み合わせ可能
+ — 例: 並列調査して結果をまとめる → 結果をもとに逐次実行
 
 ---
 
@@ -465,8 +479,8 @@ Spec UI 以外にも、AgenticBrowser を利用する方法が2つあります:
 - **エージェント非依存** — ACP 対応エージェントであればどれでも利用可能
 - **リッチなコンテキスト** — コードメンション、ドラッグ&ドロップ、スクリーンキャプチャ
 - **Human-in-the-Loop** — 会話の中で承認、割り込みダイアログなし
-- **ゴール駆動** — 完了条件を設定し、フックも指定可能
-- **拡張可能** — 最小限の設定でカスタム MCP サーバーやエージェントを追加
+- **ゴール駆動 & 拡張可能** — 完了条件やフック指定、MCP サーバー/エージェントのカスタマイズに対応
+- **Web UI / Scripting API** — ブラウザからの利用や、コード駆動のオーケストレーションにも対応
 
 ---
 

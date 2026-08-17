@@ -27,6 +27,12 @@ jobs:
       - name: Copy images directory (if exists)
         run: if [[ -d images ]]; then cp -R images build/images; fi
 
+      - name: Marp Build (Overview, ja)
+        uses: ./.github/actions/marp-build
+        with:
+          input: pharo-agentic-browser-overview-ja.md
+          output-basename: pharo-agentic-browser-overview-ja
+
       - name: Marp Build (Introducing)
         uses: ./.github/actions/marp-build
         with:

@@ -147,7 +147,7 @@ A Pharo-native GUI that can control multiple AI agents is the natural next step.
 |-----------|---------|
 | **Direct context passing** | `@ClassName`, `@Class>>method`, screenshot — no copy-paste |
 | **Agent-agnostic** | Works with any ACP agent via pharo-acp |
-| **Pharo-integrated** | Tests, code export, change watching all use the live image |
+| **Pharo-integrated** | Tests, code change watching use the live image |
 | **Parallel sessions** | Run several agents on different topics simultaneously |
 
 ---

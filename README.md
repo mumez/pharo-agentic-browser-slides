@@ -2,6 +2,12 @@
 
 Slide collection of [pharo-agentic-browser](https://github.com/mumez/pharo-agentic-browser).
 
+## Overview Slides (Japanese, condensed digest)
+
+- [pharo-agentic-browser 概要 (HTML)](https://mumez.github.io/pharo-agentic-browser-slides/pharo-agentic-browser-overview-ja.html)
+- [pharo-agentic-browser 概要 (PDF)](https://mumez.github.io/pharo-agentic-browser-slides/pharo-agentic-browser-overview-ja.pdf)
+- [Source (Marp markdown)](pharo-agentic-browser-overview-ja.md)
+
 ## Introductory Slides
 
 - [Introducing pharo-agentic-browser (HTML)](https://mumez.github.io/pharo-agentic-browser-slides/introducing-pharo-agentic-browser-en.html)
