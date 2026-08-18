@@ -119,7 +119,7 @@ table { font-size: 26px; }
 |-----|----------|---------|
 | 黎明期 | エディタサイドバーでのチャット | ChatGPT, GitHub Copilot |
 | 少し前 | エージェントモードを持つ AI ファーストな IDE | Cursor, Windsurf |
-| 現在 | **タスク全体をエージェントに委譲** | Antigravity 2.0, Codex Desktop |
+| 現在 | **タスク全体をエージェントに委譲** | Antigravity 2.0, Codex App |
 
 ツールは進化しています。UI はもはや「エディタ + チャット」ではなく、**セッションのオーケストレーション** へと向かっています。
 
