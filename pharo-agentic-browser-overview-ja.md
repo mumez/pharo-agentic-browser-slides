@@ -79,10 +79,10 @@ Claude Code、Codex、OpenCode など、複数のAI コーディングエージ�
 
 # 基本ワークフロー
 
-各AIとのセッションは **トピック** として管理します:
+各AIとのセッションは **トピック** として管理:
 
-1. トピックを作成し、ACP 対応エージェントを選択
-2. リクエストを入力 + `@ClassName` でコードを参照、スクリーンショットの添付も可
+1. トピックを作成し、コーディングエージェントを選択
+2. リクエストを入力 (`@ClassName` でコード参照、スクリーンショットの添付)
 3. AI が自律的に作業（タスク分解、コード変更、テスト）
 4. AI が承認を必要とする場合、チャット内で一時停止して確認
 5. プルダウンで応答すると AI が再開
@@ -99,13 +99,13 @@ Claude Code、Codex、OpenCode など、複数のAI コーディングエージ�
 
 # コーディングエージェントツールのGUI化
 
-AI コーディングエージェント専用の GUI ツールが標準になりつつあります:
+AI コーディングエージェント専用の GUI ツールが標準に:
 
 - **Claude Desktop** — ツール、MCP、ファイルアクセスを備えた GUI版のClaude
 - **Codex App** — OpenAI の自律的なコーディング環境
 - **Cursor / Antigravity / Kiro** — AI ネイティブなエディタ
 
-これらのツールは、AI エージェントとやり取りする際の敷居を下げ、単純なチャットを超えたものになっています。
+これらのツールは、AI エージェントとやり取りする際の敷居を下げ、コード補完や単純なチャットを超えたものになっています。
 
 ---
 
@@ -130,7 +130,7 @@ table { font-size: 26px; }
 Pharo 開発者も同じパラダイムを享受すべき:
 
 - **リッチなライブ環境** — クラス、メソッド、ランタイムがすぐそこにある
-- **pharo-acp** が複数エージェント向けの ACP クライアントをすでに提供
+- **[pharo-acp](https://github.com/mumez/pharo-acp)** が複数エージェント向けの ACP クライアントをすでに提供
 - **複数プロジェクト**を1つのイメージ内で並行実行可能
 
 <div class="highlight-box">
@@ -159,7 +159,7 @@ Pharo 開発者も同じパラダイムを享受すべき:
 
 # インストール
 
-Pharo 12+ のイメージで Playground を開き、以下を評価:
+Pharo 12以上 のイメージで Playground を開き、以下を評価:
 
 ```smalltalk
 Metacello new
@@ -178,7 +178,7 @@ AgenticBrowser open.
 
 # インストール — エージェント側
 
-ACP 対応であれば、どのエージェントも利用可能:
+[ACP](https://agentclientprotocol.com/) 対応であれば、どのエージェントでも利用可能:
 
 | エージェント | インストール |
 |-------|---------|
@@ -190,7 +190,7 @@ ACP 対応であれば、どのエージェントも利用可能:
 
 OpenCode、Kilo Code、Kiro CLI などにも対応
 
-> **推奨**: Smalltalkコードの質を上げるため 、エージェントに [smalltalk-dev-plugin](https://github.com/mumez/smalltalk-dev-plugin) をインストールしておく
+> **注意**: Smalltalkコードの質を上げるため 、エージェントには [smalltalk-dev-plugin](https://github.com/mumez/smalltalk-dev-plugin) をインストールしておく
 
 ---
 
@@ -210,7 +210,7 @@ OpenCode、Kilo Code、Kiro CLI などにも対応
 5. （任意）右クリック → **Set Target Packages...** で追跡対象パッケージを設定
 
 <div class="highlight-box">
-最初のメッセージには、Smalltalk開発者スキルを有効化するため、自動的に <code>/st-buddy</code> が付与されます。
+最初のメッセージには、Smalltalk開発者スキルを有効化するため、自動的に <code>/st-buddy</code> が付与されます。(設定で変更可)
 </div>
 
 ---
@@ -230,8 +230,8 @@ OpenCode、Kilo Code、Kiro CLI などにも対応
 | アイコン | 状態 | 意味 |
 |------|-------|---------|
 | `❇️` | working | AI が作業中 |
-| `?` | waitingForHuman | AI が承認を待っている |
-| `●` | endTurn | ターン完了 |
+| `?` | waitingForHuman | AI の承認待ち |
+| `●` | endTurn | ターン終了 |
 | `✓` | goalAchieved | ゴール達成 |
 
 ---
@@ -294,7 +294,7 @@ AgenticBrowser は各 `@mention` をTonelのソースとして解決し、ACP �
 
 ---
 
-# ゴール設定
+# ゴールの設定
 
 トピックを右クリック → **Set Goal...** で完了条件を入力:
 
@@ -302,38 +302,42 @@ AgenticBrowser は各 `@mention` をTonelのソースとして解決し、ACP �
 all tests pass
 ```
 
-AgenticBrowser は AI にゴール用のプロンプトを送信し、`result-<topic-id>.md` が作成されると、トピックは `✓`（`#goalAchieved`）に遷移します。
+AgenticBrowser は AI にゴール用のプロンプトを送信。
+結果報告ファイル(`result-<topic-id>.md`) が作成されると、トピックは `✓`（`#goalAchieved`）に遷移。
 
-ゴール達成時にはアナウンサーやコールバックブロックのフック(whenGoalAchieved)も発火するので、独自の自動化ワークフローに統合できます。
+ゴール達成時にはアナウンサーやコールバックブロックのフック(whenGoalAchieved)も発火するので、独自の自動化ワークフローに統合可能。
 
 ---
 
-# イメージ変更監視
+# イメージ内編集監視
 
 トピックに関連するパッケージへの編集をイメージ内で監視:
 
 - トピックを右クリック → **Set Target Packages...** で対象プレフィックスを設定
-- 対象のクラス/メソッドが保存されると、確認の上でパッケージがエクスポートされる
+- 対象のクラス/メソッドがイメージ内で保存されると、ユーザに確認
+  - OKなら修正したコードがTonelとしてエクスポートされる
 - **追跡対象外**の編集は候補として収集され、後から昇格可能
 
 <div class="highlight-box">
-イメージ内でユーザ自身が変更した内容と、AI が見ている Tonel ソースとを同期させ続けます。
+イメージ内でユーザ自身が変更した内容と、AI が見ている Tonel ソースを同期させる仕組みです。
 </div>
 
 ---
 
 # セッションの永続化
 
-トピックは Pharo の **Fuel** シリアライザを使って `ab-topics.fuel` に自動保存され、イメージ再起動後も残ります。
+トピックは Pharo の **Fuel** シリアライザを使って `ab-topics.fuel` に自動保存
+イメージ再起動後も利用可能
 
-手動での保存・復元:
+### 手動での保存・復元:
 
 ```smalltalk
 AbTopicManager save.
 AbTopicManager load.
 ```
-
+<div class="highlight-box">
 トピックごとの状態（設定、ステータス、会話）はすべて永続化されます。
+</div>
 
 ---
 
@@ -346,11 +350,12 @@ AbTopicManager load.
 
 # トピックテンプレート
 
-新規トピックの作業ディレクトリは、`<agenticBrowserRoot>/topic-template` をもとに生成されます:
+新規トピック作成時に、作業ディレクトリを指定しない場合、ディレクトリは、`<agenticBrowserRoot>/topic-template` をもとに生成される:
 
-- デフォルトでは `smalltalk-dev-plugin` 向けに調整された `CLAUDE.md` / `AGENTS.md` を同梱
-- `.claude`、`.opencode` などのエージェント設定ディレクトリを配置できる — スキル、コマンド、ルールを全トピックで共有
-- 独自にカスタマイズしたものに置き換え可能
+- デフォルトでは `smalltalk-dev-plugin` 向けに調整された `CLAUDE.md` / `AGENTS.md` がコピーされる
+- `.claude`、`.opencode` などのエージェント設定用のディレクトリを配置できる
+  - スキル、コマンド、ルールを全トピックで共有
+- トピックテンプレート全体を独自にカスタマイズしたものに置き換え可能
 
 <div class="highlight-box">
 新しいトピックごとにコーディングエージェントを再設定する手間を省けます。
@@ -358,10 +363,10 @@ AbTopicManager load.
 
 ---
 
-# MCP サーバー & カスタムエージェントの追加
+# MCP サーバー & エージェントの追加
 
 - **MCP サーバー** — AgenticBrowser のルートに `mcp.json` を配置。組み込みの `smalltalk-interop`/`smalltalk-validator` は自動マージ（`useDefaultMcpServers: false` で無効化可）
-- **カスタムエージェント** — Playground または `ab-settings.json` からメニューにないコーディングエージェントを登録
+- **カスタムエージェント** — Playground または `ab-settings.json` から既存メニューにないコーディングエージェントを登録
 
 ```smalltalk
 AbSettings default codingAgents: (AbSettings default codingAgents copyWith:
@@ -380,28 +385,30 @@ AbSettings save.
 | `aiPermissionWaitTimeoutSeconds` | `1800` | 人間の承認待ちタイムアウト |
 | `aiPermissionTimeoutOption` | `#reject_once` | 自動応答: `allow_once`, `allow_always`, `reject_once` |
 
-設定は右クリック → **Edit Settings...** から**トピックごと**にも設定可能です。
+設定は右クリック → **Edit Settings...** から**トピックごと**にも設定可能
 
 ---
 
 <!-- _class: section -->
 <!-- _paginate: false -->
 
-## その他のインターフェース
+## 拡張機能
 
 ---
 
 # Web UI（概要）
 
 <div class="highlight-box">
-任意の Web ブラウザから <strong>AgenticBrowser</strong> を利用できるオプションパッケージです。
+任意の Web ブラウザから <strong>AgenticBrowser</strong> を利用できるオプションパッケージ
 </div>
 
 - WebSocket フレームワーク [Ripple](https://github.com/mumez/Ripple) により、リロード不要でリアルタイムに同期
 - SolidJS + daisyUI でモバイル端末にも対応
-- Spec UI にある操作（トピック管理、プロンプト送信、承認）はひととおり利用可能
+- Spec UI 上とほぼ同じ操作（トピック管理、プロンプト送信、承認など）が可能
 
-**ユースケース**: 外出先からのスマートフォン確認、ディスプレイのないヘッドレス環境からのアクセスなど
+**ユースケース**: 
+外出先からのスマートフォンでの確認
+ディスプレイのないヘッドレス環境からの利用
 
 → 詳細は [Web UI スライド](https://mumez.github.io/pharo-agentic-browser-slides/pharo-agentic-browser-web-ui-ja.html) を参照
 
@@ -418,14 +425,17 @@ AbSettings save.
 # Scripting API（概要）
 
 <div class="highlight-box">
-UI操作なしに<strong>Smalltalkコードから AgenticBrowser のトピックをオーケストレーション</strong>できるオプションパッケージです。
+<strong>Smalltalkのスクリプトで AgenticBrowser のトピックをオーケストレーション</strong>できるオプションパッケージ
 </div>
 
 - `seq:`、`para:`、`topicBy:`、`agentBy:` などわずか数個のメッセージでマルチエージェントのワークフローを構築
-- 結果はステップ間で自動的に受け渡される — 手動での情報のやりとりは不要
-- AI エージェント自身がスクリプトを書いて `st-eval` で実行することも可能（`ab-scripting-feature-dev` スキル）
+- 結果はステップ間で自動的に受け渡される
+  - 手動での情報のやりとりは不要
+- AI エージェント自身がスクリプトを書き `st-eval` で実行できる
+  - `ab-scripting-feature-dev` スキル
 
-**ユースケース**: 定型的な AI ワークフローの実行や CI 組み込み、ヘッドレス環境での実行、複雑なマルチエージェント連携
+**ユースケース**: 
+定型的な AI ワークフローの実行、 CIへの組み込み、複雑なマルチエージェント連携
 
 → 詳細は [Scripting API スライド](https://mumez.github.io/pharo-agentic-browser-slides/pharo-agentic-browser-scripting-ja.html) を参照
 
@@ -433,7 +443,8 @@ UI操作なしに<strong>Smalltalkコードから AgenticBrowser のトピック
 
 # Scripting API — 実際の例
 
-逐次ステップ（`seq:`）— 各トピックの結果は次のトピックのプロンプトに引き継がれる:
+逐次実行ステップ（`seq:`）
+— 各トピックの結果は次のトピックのプロンプトに引き継がれる:
 
 ```smalltalk
 AgenticBrowser runBy: [ :builder |
@@ -449,7 +460,8 @@ AgenticBrowser runBy: [ :builder |
 
 # Scripting API — 並列ステップの例
 
-トピックは並行実行され、結果は次のステップのためにまとめられる:
+並行実行ステップ （`para:`）
+— トピックは並列実行され、結果は次のステップのためにまとめられる:
 
 ```smalltalk
 AgenticBrowser runBy: [ :builder |
@@ -460,11 +472,10 @@ AgenticBrowser runBy: [ :builder |
 ```
 
 `seq:` と `para:` は自由に組み合わせ可能
- — 例: 並列調査して結果をまとめる → 結果をもとに逐次実行
+ Arenaパターン: [複数のモデルで並行開発 → 結果をまとめて優れたほうを採用](https://mumez.github.io/pharo-agentic-browser-slides/pharo-agentic-browser-scripting-en.html#15)
 
-> 実践例: To-Do アプリ
-> [to-do-list-orchestration-script.md](https://github.com/mumez/pharo-agentic-browser/blob/develop/docs/to-do-list-orchestration-script.md)
-
+> - 実践例1: [To-Do アプリ作成スクリプト](https://github.com/mumez/pharo-agentic-browser/blob/develop/docs/to-do-list-orchestration-script.md)
+> - 実践例2: [RediStickのTimeSeries対応用スクリプト](https://github.com/mumez/RediStick/blob/master/doc/scripting-features/feature-ts-createrule-deleterule.scripting.md)
 ---
 
 <!-- _class: section -->
@@ -478,12 +489,12 @@ AgenticBrowser runBy: [ :builder |
 
 **pharo-agentic-browser** は、コーディングエージェントへの委譲というパラダイムを Pharo にもたらします:
 
-- **ネイティブ GUI** — イメージから離れずに複数の AI セッションを管理
+- **ネイティブ GUI** — 複数の AI セッションをPharoから直接管理
 - **エージェント非依存** — ACP 対応エージェントであればどれでも利用可能
-- **リッチなコンテキスト** — コードメンション、ドラッグ&ドロップ、スクリーンキャプチャ
-- **Human-in-the-Loop** — 会話の中で承認、割り込みダイアログなし
-- **ゴール駆動 & 拡張可能** — 完了条件やフック指定、MCP サーバー/エージェントのカスタマイズに対応
-- **Web UI / Scripting API** — ブラウザからの利用や、コード駆動のオーケストレーションにも対応
+- **リッチなコンテキスト** — ドラッグ&ドロップでコードメンション、画面キャプチャ
+- **Human-in-the-Loop** — 会話の中で承認 (割り込みダイアログなし)
+- **ゴール駆動 & 拡張可能** — 完了条件やフックを指定、MCP サーバーやエージェントのカスタマイズが可能
+- **Web UI / Scripting API** — ブラウザからの利用や、スクリプトでのオーケストレーションにも対応
 
 ---
 
