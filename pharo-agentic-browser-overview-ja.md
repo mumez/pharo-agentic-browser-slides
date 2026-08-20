@@ -64,7 +64,7 @@ https://github.com/mumez/pharo-agentic-browser
 # pharo-agentic-browser
 
 <div class="highlight-box">
-Claude Code、Codex、OpenCode など、複数のAI コーディングエージェントを Pharo から利用できる<strong>統合AIコーディングツール</strong>です。
+Claude Code、Codex、OpenCode など、複数のAI コーディングエージェントを Pharo から利用できる<strong>統合AIコーディングツール</strong>
 </div>
 
 ---
@@ -79,7 +79,7 @@ Claude Code、Codex、OpenCode など、複数のAI コーディングエージ�
 
 # 基本ワークフロー
 
-各AIとのセッションは **トピック** として管理:
+各AIとのセッションを **トピック** として管理:
 
 1. トピックを作成し、コーディングエージェントを選択
 2. リクエストを入力 (`@ClassName` でコード参照、スクリーンショットの添付)
@@ -105,7 +105,8 @@ AI コーディングエージェント専用の GUI ツールが標準に:
 - **Codex App** — OpenAI の自律的なコーディング環境
 - **Cursor / Antigravity / Kiro** — AI ネイティブなエディタ
 
-これらのツールは、AI エージェントとやり取りする際の敷居を下げ、コード補完や単純なチャットを超えたものになっています。
+CUIに比べ、AI エージェントとやり取りする際の敷居が下がった
+最初は単純なコード補完やチャットだったが...
 
 ---
 
@@ -121,7 +122,8 @@ table { font-size: 26px; }
 | 少し前 | エージェントモードを持つ AI ファーストな IDE | Cursor, Windsurf |
 | 現在 | **タスク全体をエージェントに委譲** | Antigravity 2.0, Codex App |
 
-ツールは進化しています。UI はもはや「エディタ + チャット」ではなく、**セッションのオーケストレーション** へと向かっています。
+ツールは日々進化している
+もはや「エディタ + チャット」ではなく、UI は **セッションのオーケストレーション** へと向かっている
 
 ---
 
@@ -134,7 +136,7 @@ Pharo 開発者も同じパラダイムを享受すべき:
 - **複数プロジェクト**を1つのイメージ内で並行実行可能
 
 <div class="highlight-box">
-複数の AI エージェントを制御できる Pharo ネイティブなツールが、次のステップとして自然です。
+複数の AI エージェントを制御できる Pharo ネイティブなツールが、次のステップとして自然
 </div>
 
 ---
@@ -210,7 +212,7 @@ OpenCode、Kilo Code、Kiro CLI などにも対応
 5. （任意）右クリック → **Set Target Packages...** で追跡対象パッケージを設定
 
 <div class="highlight-box">
-最初のメッセージには、Smalltalk開発者スキルを有効化するため、自動的に <code>/st-buddy</code> が付与されます。(設定で変更可)
+最初のメッセージには、Smalltalk開発者スキルを有効化するため、自動的に <code>/st-buddy</code> が付与される (設定で変更可)
 </div>
 
 ---
@@ -219,7 +221,7 @@ OpenCode、Kilo Code、Kiro CLI などにも対応
 
 # トピックの状態
 
-各トピックの状態はステートマシンで明確に管理:
+各トピックの状態はステートマシン([SState](https://github.com/mumez/SState))で明確に管理:
 
 ![h:520px](images/topic-states.svg)
 
@@ -244,23 +246,23 @@ AI が承認を要求すると:
 - **Send** ボタンが **Allow** に変化
 - **Cancel** ボタンが **Deny** に変化
 
-ボタンをクリックして応答すると、AI が再開します。
+ボタンをクリックして応答すると、AI が再開
 
 <div class="highlight-box">
-モーダルダイアログはありません。承認は会話フローの一部です。
+承認は会話フローの一部として行われる (モーダルダイアログは使わない) 
 </div>
 
 ---
 
 # コードメンション
 
-チャット内で Pharo のクラスやメソッドを直接参照できます:
+チャット内で Pharo のクラスやメソッドを直接参照できる:
 
 ```
 @QueryClass @DBAdapter>>connect please refactor this
 ```
 
-AgenticBrowser は各 `@mention` をTonelのソースとして解決し、ACP のテキストリソースにして添付します — **コピペ不要**。
+AgenticBrowser は各 `@mention` をTonelのソースとして解決し、ACP のテキストリソースにして添付 — **コピペ不要**。
 
 ### ドラッグ&ドロップ
 
@@ -289,7 +291,7 @@ AgenticBrowser は各 `@mention` をTonelのソースとして解決し、ACP �
 3. 送信 — ファイルの内容がテキストリソースとして添付される
 
 <div class="highlight-box">
-サイズの大きいファイルは <code>maxAttachmentSize</code>（デフォルト 5MB）に切り詰められます。送信前にメンションテキストを削除すれば添付はキャンセルされます。
+サイズの大きいファイルは <code>maxAttachmentSize</code>（デフォルト 5MB）に切り詰められる。送信前にメンションテキストを削除すれば添付はキャンセルされる。
 </div>
 
 ---
@@ -319,7 +321,7 @@ AgenticBrowser は AI にゴール用のプロンプトを送信。
 - **追跡対象外**の編集は候補として収集され、後から昇格可能
 
 <div class="highlight-box">
-イメージ内でユーザ自身が変更した内容と、AI が見ている Tonel ソースを同期させる仕組みです。
+イメージ内でユーザ自身が変更した内容と、AI が見ている Tonel ソースを同期させる仕組み
 </div>
 
 ---
@@ -336,7 +338,7 @@ AbTopicManager save.
 AbTopicManager load.
 ```
 <div class="highlight-box">
-トピックごとの状態（設定、ステータス、会話）はすべて永続化されます。
+トピックごとの状態（設定、ステータス、会話）はすべて永続化される
 </div>
 
 ---
@@ -358,7 +360,7 @@ AbTopicManager load.
 - トピックテンプレート全体を独自にカスタマイズしたものに置き換え可能
 
 <div class="highlight-box">
-新しいトピックごとにコーディングエージェントを再設定する手間を省けます。
+新しいトピックごとにコーディングエージェントを再設定する手間を省ける
 </div>
 
 ---
@@ -432,7 +434,7 @@ AbSettings save.
 - 結果はステップ間で自動的に受け渡される
   - 手動での情報のやりとりは不要
 - AI エージェント自身がスクリプトを書き `st-eval` で実行できる
-  - `ab-scripting-feature-dev` スキル
+  - [`ab-scripting-feature-dev`](https://github.com/mumez/pharo-agentic-browser/tree/develop/skills#ab-scripting-feature-dev) スキル
 
 **ユースケース**: 
 定型的な AI ワークフローの実行、 CIへの組み込み、複雑なマルチエージェント連携
@@ -487,7 +489,7 @@ AgenticBrowser runBy: [ :builder |
 
 # まとめ
 
-**pharo-agentic-browser** は、コーディングエージェントへの委譲というパラダイムを Pharo にもたらします:
+**pharo-agentic-browser** は、コーディングエージェントへの委譲というパラダイムを Pharo にもたらす:
 
 - **ネイティブ GUI** — 複数の AI セッションをPharoから直接管理
 - **エージェント非依存** — ACP 対応エージェントであればどれでも利用可能
